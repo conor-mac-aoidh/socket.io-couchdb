@@ -1,0 +1,40 @@
+{
+  "name": "socket.io-couchdb",
+  "version": "0.1.4",
+  "description": "",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:conor-mac-aoidh/socket.io-couchdb.git"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "dependencies": {
+    "JSONStream": "^0.10.0",
+    "debug": "0.7.4",
+    "domain": "0.0.1",
+    "event-stream": "^3.1.7",
+    "http": "0.0.0",
+    "msgpack-js": "0.3.0",
+    "redis": "0.10.1",
+    "request": "^2.50.0",
+    "socket.io-adapter": "0.3.1",
+    "stream": "0.0.2",
+    "uid2": "0.0.3"
+  },
+  "devDependencies": {
+    "socket.io": "1.0.2",
+    "socket.io-client": "1.0.2",
+    "mocha": "1.18.0",
+    "expect.js": "0.3.1",
+    "async": "0.2.10"
+  },
+  "readmeFilename": "README.md",
+  "bugs": {
+    "url": "https://github.com/conor-mac-aoidh/socket.io-couchdb/issues"
+  },
+  "homepage": "https://github.com/conor-mac-aoidh/socket.io-couchdb",
+  "_id": "socket.io-couchdb@0.1.4",
+  "_shasum": "070853d001b5cdcc3406851345d23752333dbc92",
+  "_from": "../socket.io-couchdb"
+}
