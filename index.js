@@ -33,12 +33,19 @@ function adapter(uri, opts){
     opts = uri;
     uri = null;
   }
-
+ 
   // handle uri string
-  if (uri && !opts.port) {
-    uri = uri.split(':');
-    opts.host = uri[0];
-    opts.port = uri[1];
+  if (opts.host && !opts.port) {
+    opts.host = opts.host.split(':');
+    // using basic auth
+    if(opts.host.indexOf('@') !== -1){
+      opts.port = opts.host.pop();
+      opts.host = opts.host.join(':');
+    }
+    else{
+      opts.host = opts.host[0];
+      opts.port = opts.host[1];
+    }
   }
 
   // opts
