@@ -18,7 +18,7 @@ var es = require('event-stream');
 //nock.recorder.rec();
 
 /**
- * Returns a redis Adapter class.
+ * Returns a couchdb Adapter class.
  *
  * @param {String} optional, redis uri
  * @return {RedisAdapter} adapter
@@ -48,6 +48,8 @@ function adapter(uri, opts){
       opts.port = opts.host[1];
     }
   }
+
+  var encode = opts.encode || true;
 
   // opts
   var host = opts.host || '127.0.0.1';
@@ -105,7 +107,7 @@ function adapter(uri, opts){
     if(uid === pieces.pop()){
       return debug('ignore same uid');
     }
-    var args = msgpack.decode(new Buffer(data.doc.msg, 'hex'));
+    var args = encode ? msgpack.decode(new Buffer(data.doc.msg, 'hex')) : data.doc.msg;
     debug('message received: ', args);
 
     if(args[0] && args[0].nsp === undefined){
@@ -130,13 +132,13 @@ function adapter(uri, opts){
     // add the message to the db
     if(!remote){
       debug('broadcasting message: ', [packet, opts]);
-      var msg = msgpack.encode([packet, opts]).toString('hex');
-//      var msg = [packet, opts];
+      var msg = encode ? msgpack.encode([packet, opts]).toString('hex') : [packet, opts];
       request({
         url     : base,
         method  : 'POST',
         body    :  {
           channel   : key,
+          date      : new Date(),
           msg       : msg
         },
         json    : true

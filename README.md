@@ -7,7 +7,7 @@ A plugin for socket.io using couchdb as a storage backend. Based on the [socket.
 ```js
 var io = require('socket.io')(3000);
 var couchdb = require('socket.io-couchdb');
-io.adapter(couchdb({ host: 'localhost', port: 5984, db : 'socket.io' }));
+io.adapter(couchdb({ host: 'localhost', port: 5984, db : 'socket.io', encode : true }));
 ```
 
 By running socket.io with the `socket.io-couchdb` adapter you can run
