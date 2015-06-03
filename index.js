@@ -49,7 +49,10 @@ function adapter(uri, opts){
     }
   }
 
-  var encode = opts.encode || true;
+  var encode = false;
+  if(typeof opts.encode !== 'undefined'){
+    encode = opts.encode;
+  }
 
   // opts
   var host = opts.host || '127.0.0.1';
