@@ -138,7 +138,6 @@ function adapter(uri, opts){
         method  : 'POST',
         body    :  {
           channel   : key,
-          ts        : new Date().getTime(),
           msg       : msg
         },
         json    : true
