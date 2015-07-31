@@ -59,7 +59,7 @@ function adapter(uri, opts){
   var db = opts.db;
   var port = Number(opts.port || 5984);
   var prefix = opts.key || 'socket.io';
-  var base = host + ':' + port + '/' + db + '/';
+  var base = host + ':' + port + '/' + encodeURIComponent(db) + '/';
 
   // this server's key
   var uid = uid2(6);
