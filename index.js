@@ -89,7 +89,8 @@ function adapter(uri, opts){
     }.bind(this));
   }
   
-  CouchDB.prototype.__proto__ = Adapter.prototype;
+  CouchDB.prototype = Object.create(Adapter.prototype);
+  CouchDB.prototype.constructor = CouchDB;
 
   CouchDB.prototype.requestChanges = function(){
     http.get(base + '/_changes?feed=continuous&heartbeat=1000&include_docs=true&since=now', function(feed){
@@ -130,7 +131,7 @@ function adapter(uri, opts){
   };
 
   CouchDB.prototype.broadcast = function(packet, opts, remote){
-    debug('broadcasting data');
+    debug('broadcasting data: ' + JSON.stringify(packet));
     Adapter.prototype.broadcast.call(this, packet, opts);
     // add the message to the db
     if(!remote){
